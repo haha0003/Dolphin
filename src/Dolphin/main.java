@@ -7,5 +7,6 @@ public class main {
 
     private void run() {
         System.out.println("DinFar:)");
+        System.out.println("blomme");
     }
 }
