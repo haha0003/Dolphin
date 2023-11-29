@@ -88,20 +88,20 @@ public class Membership {
         }
     }
 
-    public void findMemberType(){
-        if (member.getAge() < 18){
+    public void findMemberType(int age){
+        if (age < 18){
             setMemberType(MemberType.JUNIOR);
             System.out.println("Member type: " + getMemberType());
-        } else if (member.getAge() >= 18){
+        } else {
             setMemberType(MemberType.SENIOR);
             System.out.println("Member type: " + getMemberType());
         }
     }
 
-    public void createMembership(){
+    public void createMembership(int age){
         findSwimmerType();
         findMemberStatus();
-        findMemberType();
+        findMemberType(age);
     }
 
     @Override

@@ -11,13 +11,26 @@ public class Member {
     private int age;
     private Membership membership;
     private ArrayList<Member> members = new ArrayList<>();
+    private boolean inDebt = true;
+
+    public boolean isInDebt() {
+        return inDebt;
+    }
+
+    public void setInDebt(boolean inDebt) {
+        this.inDebt = inDebt;
+    }
+
+
 
     Scanner scanner = new Scanner(System.in);
 
-    Member(String name, LocalDate birthday, Membership membership){
+    Member(String name, LocalDate birthday, int age, Membership membership, boolean inDebt){
         this.name = name;
         this.birthday = birthday;
         this.membership = membership;
+        this.age = age;
+        this.inDebt = inDebt;
     }
 
     Member(){
@@ -90,11 +103,13 @@ public class Member {
         findName();
         findBirthday();
         Membership membership = new Membership();
-        membership.createMembership();
+        membership.createMembership(getAge());
         setMembership(membership);
-        Member m = new Member(getName(),getBirthday(), getMembership());
+        Member m = new Member(getName(),getBirthday(), getAge(), getMembership(), isInDebt());
         members.add(m);
         System.out.println(m);
+        Subscription sub = new Subscription(m);
+        sub.findPrice(m);
     }
 
     @Override
@@ -103,6 +118,6 @@ public class Member {
                 "\nNEW MEMBER " +
                 "\nName: " + name +
                 "\nBirthday: " + birthday +
-                ", age: " + age + "\n" + membership;
+                ", age: " + age + "\n" + "Is in debt?:" + inDebt + "\n" + membership;
     }
 }
