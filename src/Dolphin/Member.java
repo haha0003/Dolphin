@@ -14,10 +14,11 @@ public class Member {
 
     Scanner scanner = new Scanner(System.in);
 
-    Member(String name, LocalDate birthday, Membership membership){
+    Member(String name, LocalDate birthday,int age, Membership membership){
         this.name = name;
         this.birthday = birthday;
         this.membership = membership;
+        this.age = age;
     }
 
     Member(){
@@ -90,9 +91,9 @@ public class Member {
         findName();
         findBirthday();
         Membership membership = new Membership();
-        membership.createMembership();
+        membership.createMembership(getAge());
         setMembership(membership);
-        Member m = new Member(getName(),getBirthday(), getMembership());
+        Member m = new Member(getName(),getBirthday(), getAge(), getMembership());
         members.add(m);
         System.out.println(m);
     }

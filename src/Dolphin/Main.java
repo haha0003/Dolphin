@@ -26,7 +26,7 @@ public class Main {
             int userInt = menu.readChoice();
             switch (userInt){
                 case 1 -> member.createMember();
-                case 2 -> membership.createMembership();
+                case 2 -> System.out.println();
                 case 3 -> System.out.println();
                 case 4 -> System.out.println();
                 case 5 -> System.out.println();
