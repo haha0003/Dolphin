@@ -18,13 +18,15 @@ public class Main {
                 "9. End program"
         });
         // member.readFile();
+        Member member = new Member();
+        Membership membership = new Membership();
         boolean running = true;
         while (running) {
             menu.viewMenu();
             int userInt = menu.readChoice();
             switch (userInt){
-                case 1 -> System.out.println();
-                case 2 -> System.out.println();
+                case 1 -> member.createMember();
+                case 2 -> membership.createMembership();
                 case 3 -> System.out.println();
                 case 4 -> System.out.println();
                 case 5 -> System.out.println();

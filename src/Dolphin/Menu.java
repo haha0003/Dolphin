@@ -12,10 +12,11 @@ public class Menu {
     }
 
     public void viewMenu(){
-        System.out.println(menuHeader);
+        System.out.println("\n------------------------------------");
         for (int i = 0; i < menuLog.length; i++){
             System.out.println(menuLog[i]);
         }
+        System.out.println("\n"+menuHeader);
     }
 
     public int readChoice(){
