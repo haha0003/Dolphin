@@ -11,6 +11,9 @@ public class Member {
     private int age;
     private Membership membership;
     private ArrayList<Member> members = new ArrayList<>();
+    final String filename = "MembersList.txt";
+
+    ss
 
     Scanner scanner = new Scanner(System.in);
 
@@ -53,16 +56,20 @@ public class Member {
     }
 
     public void findName(){
-        System.out.println("Enter first and last name: ");
-        String name = scanner.nextLine();
-        String[] n = name.split(" ");
-        if (n.length == 2){
-            String firstName = n[0];
-            String lastName = n[1];
-            setName(name);
-            System.out.println("Name: " + getName());
-        } else {
-            System.out.println("INVALID!!!");
+        boolean run = true;
+        while (run) {
+            System.out.println("Enter first and last name: ");
+            String name = scanner.nextLine();
+            String[] n = name.split(" ");
+            if (n.length == 2) {
+                String firstName = n[0];
+                String lastName = n[1];
+                setName(name);
+                System.out.println("Name: " + getName());
+                run = false;
+            } else {
+                System.out.println("INVALID!!!");
+            }
         }
     }
 
@@ -98,10 +105,16 @@ public class Member {
         System.out.println(m);
     }
 
+    public void viewMembers(){
+        System.out.println("VIEW MEMBERS");
+        for (int i = 0; i < members.size(); i++){
+            System.out.println(i + ". " + members.get(i));
+        }
+    }
+
     @Override
     public String toString() {
         return  "--------------------------------" +
-                "\nNEW MEMBER " +
                 "\nName: " + name +
                 "\nBirthday: " + birthday +
                 ", age: " + age + "\n" + membership;
