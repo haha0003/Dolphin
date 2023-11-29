@@ -7,6 +7,7 @@ public class Membership {
     private MemberType memberType;
     private SwimmerType swimmerType;
 
+    Member member = new Member();
     Scanner scanner = new Scanner(System.in);
 
     Membership(MemberStatus memberStatus, MemberType memberType, SwimmerType swimmerType){
@@ -87,20 +88,20 @@ public class Membership {
         }
     }
 
-    public void findMemberType(int age){
-        if (age < 18){
+    public void findMemberType(){
+        if (member.getAge() < 18){
             setMemberType(MemberType.JUNIOR);
             System.out.println("Member type: " + getMemberType());
-        } else {
+        } else if (member.getAge() >= 18){
             setMemberType(MemberType.SENIOR);
             System.out.println("Member type: " + getMemberType());
         }
     }
 
-    public void createMembership(int age){
+    public void createMembership(){
         findSwimmerType();
         findMemberStatus();
-        findMemberType(age);
+        findMemberType();
     }
 
     @Override
