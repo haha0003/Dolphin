@@ -110,6 +110,8 @@ public class Member {
         System.out.println(m);
         Subscription sub = new Subscription(m);
         sub.findPrice(m);
+        sub.addToDebtList(m);
+        sub.displayDebtList(); // Testing purposes, to be removed
     }
 
     @Override

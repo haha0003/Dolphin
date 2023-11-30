@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Subscription {
     private Member member;
     private double payment;
+    public static final String COLOR_RESET = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
 
     public double getPrice() {
         return price;
@@ -31,6 +33,23 @@ public class Subscription {
         System.out.println(member.getName() + "has now paid their debt.");
     }
 
+    public void displayDebtList(){
+        System.out.println("--------------------------------\n\tList of members in debt\n");
+
+        for (Member i : debtList){
+            int num = 1;
+            System.out.println(num + ". Name: " + i.getName() +
+                    "\n  Birthday: " + i.getBirthday() +
+                    " , age: " + i.getAge() + "\n" + i.getMembership() + RED + "\nIs in debt?: " + i.isInDebt() + COLOR_RESET);
+            num++;
+        }
+        for (int i = 0 ; i<debtList.size(); i++){
+            System.out.println(i + ". Name: " + () +
+                    "\n  Birthday: " + i.getBirthday() +
+                    " , age: " + i.getAge() + "\n" + i.getMembership() + RED + "\nIs in debt?: " + i.isInDebt() + COLOR_RESET);
+
+        }
+    }
     public void saveDebtList(){
 
     }
