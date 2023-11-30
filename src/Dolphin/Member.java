@@ -12,14 +12,18 @@ public class Member {
     private Membership membership;
     private ArrayList<Member> members = new ArrayList<>();
     final String filename = "MembersList.txt";
+    private boolean inDebt;
+    public static final String RED = "\u001B[31m";
+    public static final String COLOR_RESET = "\u001B[0m";
 
     Scanner scanner = new Scanner(System.in);
 
-    Member(String name, LocalDate birthday,int age, Membership membership){
+    Member(String name, LocalDate birthday,int age, Membership membership, boolean inDebt){
         this.name = name;
         this.birthday = birthday;
         this.membership = membership;
         this.age = age;
+        this.inDebt = inDebt;
     }
 
     Member(){
@@ -52,7 +56,13 @@ public class Member {
     public void setMembership(Membership membership) {
         this.membership = membership;
     }
+    public boolean isInDebt() {
+        return inDebt;
+    }
 
+    public void setInDebt(boolean inDebt) {
+        this.inDebt = inDebt;
+    }
     public void findName(){
         boolean run = true;
         while (run) {
@@ -98,9 +108,12 @@ public class Member {
         Membership membership = new Membership();
         membership.createMembership(getAge());
         setMembership(membership);
-        Member m = new Member(getName(),getBirthday(), getAge(), getMembership());
+        setInDebt(true);
+        Member m = new Member(getName(),getBirthday(), getAge(), getMembership(),isInDebt());
         members.add(m);
         System.out.println(m);
+        Subscription sub = new Subscription(m);
+        sub.addToDebtList(m);
     }
 
     public void viewMembers(){
@@ -116,6 +129,8 @@ public class Member {
         return  "--------------------------------" +
                 "\nName: " + name +
                 "\nBirthday: " + birthday +
-                ", age: " + age + "\n" + membership;
+                ", age: " + age + "\n" + membership + "\n" + RED + "\nIs in debt?: " + inDebt + COLOR_RESET;
     }
+
+
 }

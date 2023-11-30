@@ -20,6 +20,7 @@ public class Main {
         // member.readFile();
         Member member = new Member();
         Membership membership = new Membership();
+        Subscription sub = new Subscription();
         boolean running = true;
         while (running) {
             menu.viewMenu();
@@ -27,7 +28,7 @@ public class Main {
             switch (userInt){
                 case 1 -> member.createMember();
                 case 2 -> member.viewMembers();
-                case 3 -> System.out.println();
+                case 3 -> sub.displayDebtList();
                 case 4 -> System.out.println();
                 case 5 -> System.out.println();
                 case 6 -> System.out.println();

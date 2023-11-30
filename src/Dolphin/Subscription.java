@@ -7,6 +7,8 @@ public class Subscription {
     private double payment;
     public static final String COLOR_RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
+    private double price;
+    private double debt;
 
     public double getPrice() {
         return price;
@@ -16,14 +18,14 @@ public class Subscription {
         this.price = price;
     }
 
-    private double price;
-    private double debt;
+
     private ArrayList<Member> debtList = new ArrayList<>();
 
     Subscription(Member member){
         this.member = member;
     }
-
+    Subscription(){
+    }
     public void addToDebtList(Member member){
         debtList.add(member);
     }
@@ -35,18 +37,8 @@ public class Subscription {
 
     public void displayDebtList(){
         System.out.println("--------------------------------\n\tList of members in debt\n");
-
-        for (Member i : debtList){
-            int num = 1;
-            System.out.println(num + ". Name: " + i.getName() +
-                    "\n  Birthday: " + i.getBirthday() +
-                    " , age: " + i.getAge() + "\n" + i.getMembership() + RED + "\nIs in debt?: " + i.isInDebt() + COLOR_RESET);
-            num++;
-        }
         for (int i = 0 ; i<debtList.size(); i++){
-            System.out.println(i + ". Name: " + () +
-                    "\n  Birthday: " + i.getBirthday() +
-                    " , age: " + i.getAge() + "\n" + i.getMembership() + RED + "\nIs in debt?: " + i.isInDebt() + COLOR_RESET);
+            System.out.println(debtList.get(i));
 
         }
     }
