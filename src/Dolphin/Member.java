@@ -13,8 +13,6 @@ public class Member {
     private ArrayList<Member> members = new ArrayList<>();
     final String filename = "MembersList.txt";
 
-    ss
-
     Scanner scanner = new Scanner(System.in);
 
     Member(String name, LocalDate birthday,int age, Membership membership){
@@ -111,6 +109,7 @@ public class Member {
             System.out.println(i + ". " + members.get(i));
         }
     }
+
 
     @Override
     public String toString() {
