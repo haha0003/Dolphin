@@ -11,26 +11,15 @@ public class Member {
     private int age;
     private Membership membership;
     private ArrayList<Member> members = new ArrayList<>();
-    private boolean inDebt = true;
-
-    public boolean isInDebt() {
-        return inDebt;
-    }
-
-    public void setInDebt(boolean inDebt) {
-        this.inDebt = inDebt;
-    }
-
-
+    final String filename = "MembersList.txt";
 
     Scanner scanner = new Scanner(System.in);
 
-    Member(String name, LocalDate birthday, int age, Membership membership, boolean inDebt){
+    Member(String name, LocalDate birthday,int age, Membership membership){
         this.name = name;
         this.birthday = birthday;
         this.membership = membership;
         this.age = age;
-        this.inDebt = inDebt;
     }
 
     Member(){
@@ -65,16 +54,20 @@ public class Member {
     }
 
     public void findName(){
-        System.out.println("Enter first and last name: ");
-        String name = scanner.nextLine();
-        String[] n = name.split(" ");
-        if (n.length == 2){
-            String firstName = n[0];
-            String lastName = n[1];
-            setName(name);
-            System.out.println("Name: " + getName());
-        } else {
-            System.out.println("INVALID!!!");
+        boolean run = true;
+        while (run) {
+            System.out.println("Enter first and last name: ");
+            String name = scanner.nextLine();
+            String[] n = name.split(" ");
+            if (n.length == 2) {
+                String firstName = n[0];
+                String lastName = n[1];
+                setName(name);
+                System.out.println("Name: " + getName());
+                run = false;
+            } else {
+                System.out.println("INVALID!!!");
+            }
         }
     }
 
@@ -105,21 +98,24 @@ public class Member {
         Membership membership = new Membership();
         membership.createMembership(getAge());
         setMembership(membership);
-        Member m = new Member(getName(),getBirthday(), getAge(), getMembership(), isInDebt());
+        Member m = new Member(getName(),getBirthday(), getAge(), getMembership());
         members.add(m);
         System.out.println(m);
-        Subscription sub = new Subscription(m);
-        sub.findPrice(m);
-        sub.addToDebtList(m);
-        sub.displayDebtList(); // Testing purposes, to be removed
     }
+
+    public void viewMembers(){
+        System.out.println("VIEW MEMBERS");
+        for (int i = 0; i < members.size(); i++){
+            System.out.println(i + ". " + members.get(i));
+        }
+    }
+
 
     @Override
     public String toString() {
         return  "--------------------------------" +
-                "\nNEW MEMBER " +
                 "\nName: " + name +
                 "\nBirthday: " + birthday +
-                ", age: " + age + "\n" + "Is in debt?:" + inDebt + "\n" + membership;
+                ", age: " + age + "\n" + membership;
     }
 }
