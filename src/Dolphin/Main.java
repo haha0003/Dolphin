@@ -17,16 +17,16 @@ public class Main {
                 "   6. View top 5 swimmers",
                 "9. End program"
         });
-        // member.readFile();
         Member member = new Member();
         Membership membership = new Membership();
         Subscription sub = new Subscription();
+        member.readFile();
         boolean running = true;
         while (running) {
             menu.viewMenu();
             int userInt = menu.readChoice();
             switch (userInt){
-                case 1 -> member.createMember();
+                case 1 -> member.createMember(sub);
                 case 2 -> member.viewMembers();
                 case 3 -> sub.displayDebtList();
                 case 4 -> System.out.println();
@@ -37,7 +37,4 @@ public class Main {
             }
         }
     }
-
-
-
 }

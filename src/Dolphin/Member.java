@@ -1,5 +1,6 @@
 package Dolphin;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -11,8 +12,9 @@ public class Member {
     private int age;
     private Membership membership;
     private ArrayList<Member> members = new ArrayList<>();
-    final String filename = "MembersList.txt";
+    final String filename = "MembersList.csv";
     private boolean inDebt;
+
     public static final String RED = "\u001B[31m";
     public static final String COLOR_RESET = "\u001B[0m";
 
@@ -56,13 +58,14 @@ public class Member {
     public void setMembership(Membership membership) {
         this.membership = membership;
     }
+
     public boolean isInDebt() {
         return inDebt;
     }
-
     public void setInDebt(boolean inDebt) {
         this.inDebt = inDebt;
     }
+
     public void findName(){
         boolean run = true;
         while (run) {
@@ -102,7 +105,7 @@ public class Member {
             System.out.println("Age: " + getAge());
     }
 
-    public void createMember(){
+    public void createMember(Subscription sub){
         findName();
         findBirthday();
         Membership membership = new Membership();
@@ -111,8 +114,8 @@ public class Member {
         setInDebt(true);
         Member m = new Member(getName(),getBirthday(), getAge(), getMembership(),isInDebt());
         members.add(m);
+        saveFile(m);
         System.out.println(m);
-        Subscription sub = new Subscription(m);
         sub.addToDebtList(m);
     }
 
@@ -123,13 +126,56 @@ public class Member {
         }
     }
 
+    public void saveFile(Member member){
+        try {
+            PrintWriter pw = new PrintWriter(new FileWriter(filename,true));
+            pw.println(member.getName() + "," + member.getBirthday() + "," + member.getAge() + "," +
+                    member.membership.getMemberStatus()+ "," + member.membership.getMemberType() + "," +
+                    member.membership.getSwimmerType() + "," + member.isInDebt());
+            pw.close();
+            System.out.println("SAVED FILE");
+        } catch (IOException e){
+            System.out.println("ERROR!!!");
+            e.printStackTrace();
+        }
+    }
+
+    public void readFile() {
+        try {
+            File file = new File(filename);
+            if (!file.exists()) {
+                System.out.println("File does not exist.");
+                return; }
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] tokens = line.split(",");
+                if (tokens.length >= 6) {
+                    String name = tokens[0];
+                    LocalDate birthday = LocalDate.parse(tokens[1]);
+                    int age = Integer.parseInt(tokens[2]);
+                    MemberStatus memberStatus = MemberStatus.valueOf(tokens[3]);
+                    MemberType memberType = MemberType.valueOf(tokens[4]);
+                    SwimmerType swimmerType = SwimmerType.valueOf(tokens[5]);
+                    boolean inDebt = Boolean.parseBoolean(tokens[6]);
+                    Member newMember = new Member(name, birthday, age,
+                            new Membership(memberStatus, memberType, swimmerType), inDebt);
+                    members.add(newMember);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("ERROR!!!");
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public String toString() {
         return  "--------------------------------" +
                 "\nName: " + name +
                 "\nBirthday: " + birthday +
-                ", age: " + age + "\n" + membership + "\n" + RED + "\nIs in debt?: " + inDebt + COLOR_RESET;
+                ", age: " + age + "\n" + membership + "\n" +
+                "\nIs in debt?: " + RED  + inDebt + COLOR_RESET;
     }
 
 

@@ -5,27 +5,27 @@ import java.util.ArrayList;
 public class Subscription {
     private Member member;
     private double payment;
-    public static final String COLOR_RESET = "\u001B[0m";
-    public static final String RED = "\u001B[31m";
     private double price;
     private double debt;
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-
     private ArrayList<Member> debtList = new ArrayList<>();
+
+    public static final String COLOR_RESET = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
 
     Subscription(Member member){
         this.member = member;
     }
     Subscription(){
     }
+
+
+    public double getPrice() {
+        return price;
+    }
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public void addToDebtList(Member member){
         debtList.add(member);
     }
@@ -38,7 +38,7 @@ public class Subscription {
     public void displayDebtList(){
         System.out.println("--------------------------------\n\tList of members in debt\n");
         for (int i = 0 ; i<debtList.size(); i++){
-            System.out.println(debtList.get(i));
+            System.out.println(i + ". " + debtList.get(i));
 
         }
     }
