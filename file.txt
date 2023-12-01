@@ -1,0 +1,73 @@
+Here I can update - write anything
+
+--------------------------------
+NEW MEMBER 
+Name: Harry
+Birthday: 2016-08-16, age: 17
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null--------------------------------
+NEW MEMBER 
+Name: Elina
+Birthday: 2016-08-16, age: 20
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null--------------------------------
+NEW MEMBER 
+Name: Harry
+Birthday: 2016-08-16, age: 17
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null--------------------------------
+NEW MEMBER 
+Name: Elina
+Birthday: 2016-08-16, age: 20
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null--------------------------------
+NEW MEMBER 
+Name: Harry
+Birthday: 2016-08-16, age: 17
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null--------------------------------
+NEW MEMBER 
+Name: Elina
+Birthday: 2016-08-16, age: 20
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null--------------------------------
+NEW MEMBER 
+Name: Harry
+Birthday: 2016-08-16, age: 17
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null--------------------------------
+NEW MEMBER 
+Name: Elina
+Birthday: 2016-08-16, age: 20
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null--------------------------------
+NEW MEMBER 
+Name: Harry
+Birthday: 2016-08-16, age: 17
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null--------------------------------
+NEW MEMBER 
+Name: Elina
+Birthday: 2016-08-16, age: 20
+  MEMBERSHIP
+  MemberStatus: null
+  MemberType: null
+  SwimmerType: null
