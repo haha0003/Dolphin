@@ -38,7 +38,10 @@ public class Membership {
     public void setSwimmerType(SwimmerType swimmerType) {
         this.swimmerType = swimmerType;
     }
-
+/*Consider making the findMemberStatus, findSwimmerType, and findMemberType methods private,
+ as they are used internally within the class and are not intended to be
+  accessed directly from outside.
+ */
     public void findMemberStatus() {
         boolean run = true;
         while (run) {

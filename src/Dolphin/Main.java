@@ -1,11 +1,28 @@
 package Dolphin;
 
+import java.io.FileWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+
 public class Main {
     public static void main(String[] args) {
         new Main().run();
     }
 
     private void run() {
+        String date = "2016-08-16";
+        LocalDate localDate = LocalDate.parse(date);
+        Membership membershipTest = new Membership();
+
+        Member memberTest = new Member("Harry", localDate, 17, membershipTest);
+        Member memberTest2 = new Member("Elina", localDate, 20, membershipTest);
+        memberTest.saveFile();
+        memberTest2.saveFile();
+
+
+
         System.out.println("Welcome!!!");
         Menu menu = new Menu("Please enter number: ", new String[]{
                 "1. Create member",
