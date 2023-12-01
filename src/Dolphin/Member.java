@@ -114,9 +114,9 @@ public class Member {
         setInDebt(true);
         Member m = new Member(getName(),getBirthday(), getAge(), getMembership(),isInDebt());
         members.add(m);
-        saveFile(m);
         System.out.println(m);
         sub.addToDebtList(m);
+        saveFile();
     }
 
     public void viewMembers(){
@@ -124,6 +124,35 @@ public class Member {
         for (int i = 0; i < members.size(); i++){
             System.out.println(i + ". " + members.get(i));
         }
+    }
+
+    public void changeInDebt(Member member, Subscription sub) {
+        viewMembers();
+        boolean run = true;
+        while (run) {
+            int choice1 = 0;
+            System.out.println("Which member do you want to change? (use numbers)");
+            choice1 = scanner.nextInt();
+            scanner.nextLine();
+            member = members.get(choice1);
+            sub.findPrice(member);
+            System.out.println("Has member paid their debt? \n1. Yes \n2. No");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 1) {
+                member.setInDebt(false); // Update inDebt status for the specific member
+                sub.removeFromDebtList(member);
+                run = false;
+            } else if (choice == 2) {
+                member.setInDebt(true); // Update inDebt status for the specific member
+                sub.addToDebtList(member);
+                run = false;
+            } else {
+                System.out.println(RED + "INVALID" + COLOR_RESET);
+            }
+        }
+        saveFile(); // Save the updated members list to the file after changing inDebt status
     }
 
     public void saveFile(Member member){
@@ -158,6 +187,9 @@ public class Member {
                     MemberType memberType = MemberType.valueOf(tokens[4]);
                     SwimmerType swimmerType = SwimmerType.valueOf(tokens[5]);
                     boolean inDebt = Boolean.parseBoolean(tokens[6]);
+                    if (inDebt) {
+
+                    }
                     Member newMember = new Member(name, birthday, age,
                             new Membership(memberStatus, memberType, swimmerType), inDebt);
                     members.add(newMember);
@@ -168,6 +200,25 @@ public class Member {
             e.printStackTrace();
         }
     }
+
+    public void updateInDebtInFile(Member member){
+
+    }
+
+    public void saveFile(){
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filename))) {
+            for (Member member : members) {
+                pw.println(member.getName() + "," + member.getBirthday() + "," + member.getAge() + "," +
+                        member.getMembership().getMemberStatus() + "," + member.getMembership().getMemberType() + "," +
+                        member.getMembership().getSwimmerType() + "," + member.isInDebt());
+            }
+            System.out.println("SAVED FILE");
+        } catch (IOException e) {
+            System.out.println("ERROR!!!");
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public String toString() {

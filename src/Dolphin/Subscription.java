@@ -28,6 +28,8 @@ public class Subscription {
 
     public void addToDebtList(Member member){
         debtList.add(member);
+        System.out.println(member.getName() + " is in debt and owes ");
+        findPrice(member);
     }
 
     public void removeFromDebtList(Member member){
@@ -35,16 +37,15 @@ public class Subscription {
         System.out.println(member.getName() + "has now paid their debt.");
     }
 
-    public void displayDebtList(){
+    public void displayDebtList(Member member){
         System.out.println("--------------------------------\n\tList of members in debt\n");
         for (int i = 0 ; i<debtList.size(); i++){
             System.out.println(i + ". " + debtList.get(i));
 
         }
     }
-    public void saveDebtList(){
 
-    }
+
     public void findPrice(Member member){
         MemberType memberType = member.getMembership().getMemberType();
         MemberStatus memberStatus = member.getMembership().getMemberStatus();
@@ -52,17 +53,17 @@ public class Subscription {
         if (memberStatus == MemberStatus.ACTIVE) {
             if (memberType == MemberType.JUNIOR) {
                 setPrice(1000);
-                System.out.println(getPrice() + "kr om året");
+                System.out.println(getPrice() + "kr yearly");
             } else if (memberType == MemberType.SENIOR && age >= 60) {
                 setPrice(1200);
-                System.out.println(getPrice() + "kr om året");
+                System.out.println(getPrice() + "kr yearly");
             } else {
                 setPrice(1600);
-                System.out.println(getPrice() + "kr om året");
+                System.out.println(getPrice() + "kr yearly");
             }
         }else {
             setPrice(500);
-            System.out.println(getPrice() + "kr om året");
+            System.out.println(getPrice() + "kr yearly");
         }
     }
 }

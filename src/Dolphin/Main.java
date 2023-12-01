@@ -28,8 +28,8 @@ public class Main {
             switch (userInt){
                 case 1 -> member.createMember(sub);
                 case 2 -> member.viewMembers();
-                case 3 -> sub.displayDebtList();
-                case 4 -> System.out.println();
+                case 3 -> sub.displayDebtList(member);
+                case 4 -> member.changeInDebt(member, sub);
                 case 5 -> System.out.println();
                 case 6 -> System.out.println();
                 case 9 -> running = false;
