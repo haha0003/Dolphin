@@ -1,5 +1,7 @@
 package Dolphin;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         new Main().run();
@@ -19,6 +21,7 @@ public class Main {
         });
         // member.readFile();
         Member member = new Member();
+        CompetitionSwimmer competitionSwimmer = new CompetitionSwimmer();
         Membership membership = new Membership();
         boolean running = true;
         while (running) {
@@ -27,7 +30,7 @@ public class Main {
             switch (userInt){
                 case 1 -> member.createMember();
                 case 2 -> System.out.println();
-                case 3 -> System.out.println();
+                case 3 -> competitionSwimmer.getMember();
                 case 4 -> System.out.println();
                 case 5 -> System.out.println();
                 case 6 -> System.out.println();
