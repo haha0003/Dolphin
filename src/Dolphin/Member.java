@@ -19,6 +19,7 @@ public class Member {
     public static final String COLOR_RESET = "\u001B[0m";
 
     Scanner scanner = new Scanner(System.in);
+    Subscription sub = new Subscription();
 
     Member(String name, LocalDate birthday,int age, Membership membership, boolean inDebt){
         this.name = name;
@@ -155,19 +156,6 @@ public class Member {
         saveFile(); // Save the updated members list to the file after changing inDebt status
     }
 
-    public void saveFile(Member member){
-        try {
-            PrintWriter pw = new PrintWriter(new FileWriter(filename,true));
-            pw.println(member.getName() + "," + member.getBirthday() + "," + member.getAge() + "," +
-                    member.membership.getMemberStatus()+ "," + member.membership.getMemberType() + "," +
-                    member.membership.getSwimmerType() + "," + member.isInDebt());
-            pw.close();
-            System.out.println("SAVED FILE");
-        } catch (IOException e){
-            System.out.println("ERROR!!!");
-            e.printStackTrace();
-        }
-    }
 
     public void readFile() {
         try {
@@ -187,12 +175,11 @@ public class Member {
                     MemberType memberType = MemberType.valueOf(tokens[4]);
                     SwimmerType swimmerType = SwimmerType.valueOf(tokens[5]);
                     boolean inDebt = Boolean.parseBoolean(tokens[6]);
-                    if (inDebt) {
-
-                    }
                     Member newMember = new Member(name, birthday, age,
-                            new Membership(memberStatus, memberType, swimmerType), inDebt);
+                            new Membership(memberStatus, memberType, swimmerType),inDebt);
                     members.add(newMember);
+                    if (inDebt) {
+                    }
                 }
             }
         } catch (IOException e) {

@@ -3,18 +3,13 @@ package Dolphin;
 import java.util.ArrayList;
 
 public class Subscription {
-    private Member member;
-    private double payment;
     private double price;
-    private double debt;
     private ArrayList<Member> debtList = new ArrayList<>();
 
     public static final String COLOR_RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
 
-    Subscription(Member member){
-        this.member = member;
-    }
+
     Subscription(){
     }
 
