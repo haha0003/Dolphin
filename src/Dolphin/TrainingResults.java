@@ -48,6 +48,7 @@ public class TrainingResults extends Member implements Comparable<TrainingResult
         this.timeSeconds = scanner.nextDouble();
 
         System.out.println("Training results registered successfully! ");
+
     }
 
     public int compareTo(TrainingResults other) {
@@ -62,6 +63,7 @@ public class TrainingResults extends Member implements Comparable<TrainingResult
                 writer.println(trainingResults.getDate() + "," + trainingResults.getTimeSeconds());
             }
             System.out.println("Training results saved successfully!");
+            writer.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

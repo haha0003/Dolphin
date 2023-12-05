@@ -13,7 +13,7 @@ public class CompetitionSwimmer {
     private List<TrainingResults> trainingResultsList;
     private Coach coach;
     private SwimmingDiscipline swimmingDiscipline;
-    private List<CompetitionResults> competitionResults;
+    private List<CompetitionResults> competitionResultsList;
 
     public CompetitionSwimmer(Member member, SwimmingDiscipline swimmingDiscipline, Coach coach, TrainingResults trainingResults) {
 
@@ -21,12 +21,14 @@ public class CompetitionSwimmer {
         this.swimmingDiscipline = swimmingDiscipline;
         this.coach = coach;
         this.trainingResultsList = new ArrayList<>();
+        this.competitionResultsList = new ArrayList<>();
 
     }
 
     public CompetitionSwimmer(){
 
     }
+
 
     public Member getMember() {
         return member;
@@ -44,10 +46,13 @@ public class CompetitionSwimmer {
         return trainingResultsList;
     }
 
-    public List<CompetitionResults> getCompetitionResults() {
-        return competitionResults;
+    public List<CompetitionResults> getCompetitionResultsList() {
+        return competitionResultsList;
     }
 
+    public void addCompetitionResults(CompetitionResults competitionResults) {
+        competitionResultsList.add(competitionResults);
+    }
 
     public void addTrainingResults(TrainingResults trainingResults) {
         trainingResultsList.add(trainingResults);
@@ -74,7 +79,12 @@ public class CompetitionSwimmer {
        SwimmingDiscipline swimmingDiscipline = SwimmingDiscipline.values()[disciplineChoice];
 
 
-       return new CompetitionSwimmer(member, swimmingDiscipline, new Coach(""), new TrainingResults(0.0, LocalDateTime.now()));
-   }
+       CompetitionSwimmer newSwimmer = new CompetitionSwimmer(member, swimmingDiscipline, new Coach(""), new TrainingResults(0.0, LocalDateTime.now()));
+
+       newSwimmer.addTrainingResults(new TrainingResults(0.0, LocalDateTime.now()));
+       newSwimmer.addCompetitionResults(new CompetitionResults());
+
+       return newSwimmer;
+    }
 
 }
