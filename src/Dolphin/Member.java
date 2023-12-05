@@ -1,5 +1,6 @@
 package Dolphin;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -19,14 +20,20 @@ public class Member {
     private int age;
     private Membership membership;
     private ArrayList<Member> members = new ArrayList<>();
+    final String filename = "MembersList.csv";
+    private boolean inDebt;
+
+    public static final String RED = "\u001B[31m";
+    public static final String COLOR_RESET = "\u001B[0m";
 
     Scanner scanner = new Scanner(System.in);
 
-    Member(String name, LocalDate birthday,int age, Membership membership){
+    Member(String name, LocalDate birthday,int age, Membership membership, boolean inDebt){
         this.name = name;
         this.birthday = birthday;
         this.membership = membership;
         this.age = age;
+        this.inDebt = inDebt;
     }
 
 
@@ -77,17 +84,28 @@ public class Member {
         this.membership = membership;
     }
 
+    public boolean isInDebt() {
+        return inDebt;
+    }
+    public void setInDebt(boolean inDebt) {
+        this.inDebt = inDebt;
+    }
+
     public void findName(){
-        System.out.println("Enter first and last name: ");
-        String name = scanner.nextLine();
-        String[] n = name.split(" ");
-        if (n.length == 2){
-            String firstName = n[0];
-            String lastName = n[1];
-            setName(name);
-            System.out.println("Name: " + getName());
-        } else {
-            System.out.println("INVALID!!!");
+        boolean run = true;
+        while (run) {
+            System.out.println("Enter first and last name: ");
+            String name = scanner.nextLine();
+            String[] n = name.split(" ");
+            if (n.length == 2) {
+                String firstName = n[0];
+                String lastName = n[1];
+                setName(name);
+                System.out.println("Name: " + getName());
+                run = false;
+            } else {
+                System.out.println("INVALID!!!");
+            }
         }
     }  /* findName and findBirthday - shall we make these methods
     private since they are used internally within the createMember method?*/
@@ -113,23 +131,116 @@ public class Member {
             System.out.println("Age: " + getAge());
     }
 
-    public void createMember(){
+    public void createMember(Subscription sub){
         findName();
         findBirthday();
         Membership membership = new Membership();
         membership.createMembership(getAge());
         setMembership(membership);
-        Member m = new Member(getName(),getBirthday(), getAge(), getMembership());
+        setInDebt(true);
+        Member m = new Member(getName(),getBirthday(), getAge(), getMembership(),isInDebt());
         members.add(m);
         System.out.println(m);
+        sub.addToDebtList(m);
+        saveFile();
     }
+
+    public void viewMembers(){
+        System.out.println("VIEW MEMBERS");
+        for (int i = 0; i < members.size(); i++){
+            System.out.println(i + ". " + members.get(i));
+        }
+    }
+
+    public void changeInDebt(Member member, Subscription sub) {
+        viewMembers();
+        boolean run = true;
+        while (run) {
+            int choice1 = 0;
+            System.out.println("Which member do you want to change? (use numbers)");
+            choice1 = scanner.nextInt();
+            scanner.nextLine();
+            member = members.get(choice1);
+            sub.findPrice(member);
+            System.out.println("Has member paid their debt? \n1. Yes \n2. No");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice == 1) {
+                member.setInDebt(false); // Update inDebt status for the specific member
+                sub.removeFromDebtList(member);
+                run = false;
+            } else if (choice == 2) {
+                member.setInDebt(true); // Update inDebt status for the specific member
+                sub.addToDebtList(member);
+                run = false;
+            } else {
+                System.out.println(RED + "INVALID" + COLOR_RESET);
+            }
+        }
+        saveFile(); // Save the updated members list to the file after changing inDebt status
+    }
+
+
+    public void readFile(Subscription sub) {
+        try {
+            File file = new File(filename);
+            if (!file.exists()) {
+                System.out.println("File does not exist.");
+                return; }
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] tokens = line.split(",");
+                if (tokens.length >= 6) {
+                    String name = tokens[0];
+                    LocalDate birthday = LocalDate.parse(tokens[1]);
+                    int age = Integer.parseInt(tokens[2]);
+                    MemberStatus memberStatus = MemberStatus.valueOf(tokens[3]);
+                    MemberType memberType = MemberType.valueOf(tokens[4]);
+                    SwimmerType swimmerType = SwimmerType.valueOf(tokens[5]);
+                    boolean inDebt = Boolean.parseBoolean(tokens[6]);
+                    Member newMember = new Member(name, birthday, age,
+                            new Membership(memberStatus, memberType, swimmerType),inDebt);
+                    members.add(newMember);
+                    if (inDebt) {
+                        sub.addToDebtListNoInfo(newMember);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("ERROR!!!");
+            e.printStackTrace();
+        }
+    }
+
+    public void updateInDebtInFile(Member member){
+
+    }
+
+    public void saveFile(){
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filename))) {
+            for (Member member : members) {
+                pw.println(member.getName() + "," + member.getBirthday() + "," + member.getAge() + "," +
+                        member.getMembership().getMemberStatus() + "," + member.getMembership().getMemberType() + "," +
+                        member.getMembership().getSwimmerType() + "," + member.isInDebt());
+            }
+            System.out.println("SAVED FILE");
+        } catch (IOException e) {
+            System.out.println("ERROR!!!");
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public String toString() {
         return  "--------------------------------" +
-                "\nNEW MEMBER " +
                 "\nName: " + name +
                 "\nBirthday: " + birthday +
-                ", age: " + age + "\n" + membership;
+                ", age: " + age + "\n" + membership + "\n" +
+                "\nIs in debt?: " + RED  + inDebt + COLOR_RESET;
     }
+
+
 }

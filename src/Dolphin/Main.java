@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Welcome!!!");
         Menu menu = new Menu("Please enter number: ", new String[]{
                 "1. Create member",
-                "2. View member bill",
+                "2. View member bill// view members",
                 "3. View members in arrears",
                 "COMPETING SWIMMERS",
                 "   4. Register training results",
@@ -34,18 +34,18 @@ public class Main {
                 "   6. View top 5 swimmers",
                 "9. End program"
         });
-        // member.readFile();
         Member member = new Member();
-        Membership membership = new Membership();
+        Subscription sub = new Subscription();
+        member.readFile(sub);
         boolean running = true;
         while (running) {
             menu.viewMenu();
             int userInt = menu.readChoice();
             switch (userInt){
-                case 1 -> member.createMember();
-                case 2 -> System.out.println();
-                case 3 -> System.out.println();
-                case 4 -> System.out.println();
+                case 1 -> member.createMember(sub);
+                case 2 -> member.viewMembers();
+                case 3 -> sub.displayDebtList();
+                case 4 -> member.changeInDebt(member, sub);
                 case 5 -> System.out.println();
                 case 6 -> System.out.println();
                 case 9 -> running = false;
@@ -53,7 +53,4 @@ public class Main {
             }
         }
     }
-
-
-
 }

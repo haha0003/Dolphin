@@ -7,6 +7,7 @@ public class Membership {
     private MemberType memberType;
     private SwimmerType swimmerType;
 
+    Member member = new Member();
     Scanner scanner = new Scanner(System.in);
 
     Membership(MemberStatus memberStatus, MemberType memberType, SwimmerType swimmerType){
