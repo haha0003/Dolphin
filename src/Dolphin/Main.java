@@ -18,9 +18,8 @@ public class Main {
                 "9. End program"
         });
         Member member = new Member();
-        Membership membership = new Membership();
         Subscription sub = new Subscription();
-        member.readFile();
+        member.readFile(sub);
         boolean running = true;
         while (running) {
             menu.viewMenu();
@@ -28,7 +27,7 @@ public class Main {
             switch (userInt){
                 case 1 -> member.createMember(sub);
                 case 2 -> member.viewMembers();
-                case 3 -> sub.displayDebtList(member);
+                case 3 -> sub.displayDebtList();
                 case 4 -> member.changeInDebt(member, sub);
                 case 5 -> System.out.println();
                 case 6 -> System.out.println();

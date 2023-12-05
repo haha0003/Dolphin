@@ -27,12 +27,16 @@ public class Subscription {
         findPrice(member);
     }
 
+    public void addToDebtListNoInfo(Member member) {
+        debtList.add(member);
+    }
+
     public void removeFromDebtList(Member member){
         debtList.remove(member);
         System.out.println(member.getName() + "has now paid their debt.");
     }
 
-    public void displayDebtList(Member member){
+    public void displayDebtList(){
         System.out.println("--------------------------------\n\tList of members in debt\n");
         for (int i = 0 ; i<debtList.size(); i++){
             System.out.println(i + ". " + debtList.get(i));

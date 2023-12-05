@@ -19,7 +19,6 @@ public class Member {
     public static final String COLOR_RESET = "\u001B[0m";
 
     Scanner scanner = new Scanner(System.in);
-    Subscription sub = new Subscription();
 
     Member(String name, LocalDate birthday,int age, Membership membership, boolean inDebt){
         this.name = name;
@@ -157,7 +156,7 @@ public class Member {
     }
 
 
-    public void readFile() {
+    public void readFile(Subscription sub) {
         try {
             File file = new File(filename);
             if (!file.exists()) {
@@ -179,6 +178,7 @@ public class Member {
                             new Membership(memberStatus, memberType, swimmerType),inDebt);
                     members.add(newMember);
                     if (inDebt) {
+                        sub.addToDebtListNoInfo(newMember);
                     }
                 }
             }
