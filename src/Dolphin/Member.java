@@ -40,8 +40,16 @@ public class Member {
     Member(){
     }
 
+    public Member(String name, LocalDate birthday, int age, Membership membership) {
+        this.name = name;
+        this.birthday = birthday;
+        this.age = age;
+        this.membership = membership;
+    }
 
-    public void saveFile(){
+
+
+    /*public void saveFile(){
 
         try{
             FileWriter wr = new FileWriter("file.txt",true);
@@ -54,7 +62,7 @@ public class Member {
             System.out.println("Error");
         }
 
-    }
+    }*/
 
     public String getName() {
         return name;

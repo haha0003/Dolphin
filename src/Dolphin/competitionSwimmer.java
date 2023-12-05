@@ -14,6 +14,7 @@ public class competitionSwimmer extends Member {
         super(member.getName(), member.getBirthday(), member.getAge(), member.getMembership());
         this.swimmingDiscipline = swimmingDiscipline;
         this.trainer = trainer;
+        this.trainingResults = trainingResults;
     }
 
     public SwimmingDiscipline getSwimmingDiscipline() {
