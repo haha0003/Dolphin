@@ -75,7 +75,6 @@ public class CompetitionResults extends Member {
         this.date = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
 
-        CompetitionSwimmer swimmer = ne
 
         this.competitionResultsList.add(this);
 

@@ -55,6 +55,7 @@ public class TrainingResults extends Member implements Comparable<TrainingResult
         return Double.compare(this.timeSeconds, other.timeSeconds);
     }
 
+
     public static void savingTrainingResultsToFile(List<TrainingResults> trainingResultsList) {
         try {
             PrintWriter writer = new PrintWriter("TrainingResults.txt");

@@ -8,6 +8,7 @@ public class Coach {
     private String name;
     private List<CompetitionSwimmer> swimmers;
 
+
     public Coach(String name) {
         this.name = name;
         this.swimmers = new ArrayList<>();

@@ -50,6 +50,7 @@ public class CompetitionSwimmer {
         return competitionResultsList;
     }
 
+
     public void addCompetitionResults(CompetitionResults competitionResults) {
         competitionResultsList.add(competitionResults);
     }
