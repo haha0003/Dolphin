@@ -24,6 +24,14 @@ public class competitionSwimmer extends Member {
     public void setSwimmingDiscipline(SwimmingDiscipline swimmingDiscipline) {
         this.swimmingDiscipline = swimmingDiscipline;
     }
+    public TrainingResults getTrainingResults() {
+        return trainingResults;
+    }
+
+    public void setTrainingResults(TrainingResults trainingResults) {
+        this.trainingResults = trainingResults;
+    }
+
 
     public String getTrainer() {
         return trainer;
