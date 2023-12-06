@@ -95,7 +95,6 @@ public class CompetitionResults extends Member {
         System.out.println("Competition results saves successfully!");
         writer.close();
     } catch(FileNotFoundException e) {
-       // throw new RuntimeException(e);
             System.err.println("Error saving competition results to file: " + e.getMessage());
     }
 
