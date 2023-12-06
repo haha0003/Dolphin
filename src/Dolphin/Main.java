@@ -11,10 +11,11 @@ public class Main {
                 "1. Create member",
                 "2. View member bill// view members",
                 "3. View members in arrears",
+                "4. Change debt for member"
                 "COMPETING SWIMMERS",
-                "   4. Register training results",
-                "   5. Register competition results",
-                "   6. View top 5 swimmers",
+                "   5. Register training results",
+                "   6. Register competition results",
+                "   7. View top 5 swimmers",
                 "9. End program"
         });
         Member member = new Member();
@@ -31,6 +32,7 @@ public class Main {
                 case 4 -> member.changeInDebt(member, sub);
                 case 5 -> System.out.println();
                 case 6 -> System.out.println();
+                case 7 -> System.out.println();
                 case 9 -> running = false;
                 default -> System.out.println("INVALID!!!");
             }
