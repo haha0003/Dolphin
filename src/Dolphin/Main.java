@@ -20,6 +20,7 @@ public class Main {
         });
         Member member = new Member();
         Subscription sub = new Subscription();
+        CompetitionResults = new CompetitionResults();
         member.readFile(sub);
         boolean running = true;
         while (running) {
@@ -30,7 +31,7 @@ public class Main {
                 case 2 -> member.viewMembers();
                 case 3 -> sub.displayDebtList();
                 case 4 -> member.changeInDebt(member, sub);
-                case 5 -> System.out.println();
+                case 5 ->
                 case 6 -> System.out.println();
                 case 7 -> System.out.println();
                 case 9 -> running = false;
