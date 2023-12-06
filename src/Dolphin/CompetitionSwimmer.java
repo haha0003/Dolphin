@@ -26,6 +26,7 @@ public class CompetitionSwimmer {
     }
 
 
+
     public CompetitionSwimmer(){
 
     }

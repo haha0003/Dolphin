@@ -20,6 +20,7 @@ public class TrainingResults extends Member implements Comparable<TrainingResult
 
 
 
+
     public void setDate(LocalDateTime date) {
         this.date = date;
     }

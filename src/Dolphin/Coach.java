@@ -15,6 +15,7 @@ public class Coach {
     }
 
 
+
     public void addSwimmer( CompetitionSwimmer swimmer) {
         swimmers.add(swimmer);
     }
