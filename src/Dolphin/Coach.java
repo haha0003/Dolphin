@@ -19,6 +19,7 @@ public class Coach {
         swimmers.add(swimmer);
     }
 
+
     public void displaySwimmers() {
         for (CompetitionSwimmer swimmer : swimmers) {
             System.out.println(swimmer.getMember().getName());
