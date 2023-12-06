@@ -161,6 +161,7 @@ public class Member {
                     Member newMember = new Member(name, birthday, age,
                             new Membership(memberStatus, memberType, swimmerType), inDebt);
                     members.add(newMember);
+
                 }
             }
         } catch (IOException e) {
