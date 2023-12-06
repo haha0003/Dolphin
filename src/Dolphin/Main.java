@@ -11,7 +11,7 @@ public class Main {
                 "1. Create member",
                 "2. View member bill// view members",
                 "3. View members in arrears",
-                "4. Change debt for member"
+                "4. Change debt for member",
                 "COMPETING SWIMMERS",
                 "   5. Register training results",
                 "   6. Register competition results",
@@ -20,7 +20,7 @@ public class Main {
         });
         Member member = new Member();
         Subscription sub = new Subscription();
-        CompetitionResults = new CompetitionResults();
+        CompetitionResults competitionResults = new CompetitionResults();
         member.readFile(sub);
         boolean running = true;
         while (running) {
@@ -31,7 +31,7 @@ public class Main {
                 case 2 -> member.viewMembers();
                 case 3 -> sub.displayDebtList();
                 case 4 -> member.changeInDebt(member, sub);
-                case 5 ->
+                case 5 -> competitionResults.getCompetitionResultsFromUserInput();
                 case 6 -> System.out.println();
                 case 7 -> System.out.println();
                 case 9 -> running = false;
