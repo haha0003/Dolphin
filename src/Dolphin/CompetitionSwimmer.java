@@ -7,20 +7,17 @@ import java.util.Scanner;
 public class CompetitionSwimmer extends Member{
 
     private Member member;
-    private List<TrainingResults> trainingResultsList;
     private Coach coach;
-
-
-
+    private List<TrainingResults> trainingResultsList;
     private SwimmingDiscipline swimmingDiscipline;
     private List<CompetitionResults> competitionResultsList;
     private List<Member> competitionSwimmers = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public CompetitionSwimmer(Member member, SwimmingDiscipline swimmingDiscipline, Coach coach, TrainingResults trainingResults) {
+    CompetitionSwimmer(Member member, Coach coach, SwimmingDiscipline swimmingDiscipline) {
         this.member = member;
-        this.swimmingDiscipline = swimmingDiscipline;
         this.coach = coach;
+        this.swimmingDiscipline = swimmingDiscipline;
         this.trainingResultsList = new ArrayList<>();
         this.competitionResultsList = new ArrayList<>();
     }
@@ -52,11 +49,15 @@ public class CompetitionSwimmer extends Member{
         if (swimmerType == SwimmerDiscipline.COMPETITOR) {
             competitionSwimmers.add(member);
         }
+    } //Only used by Member -> createMember
+
+    public void addToCompList(Member member) {
+        competitionSwimmers.add(member);
     }
 
     public void viewCompSwimmers() {
         for (int i = 0; i<competitionSwimmers.size(); i++){
-            System.out.println(i + ". " + competitionSwimmers.get(i));
+            System.out.println(i + ". " + competitionSwimmers.get(i).getName());
         }
     }
 
@@ -69,21 +70,16 @@ public class CompetitionSwimmer extends Member{
         System.out.println("You picked: " + member);
     }
 
-    public void addToCompList(Member member) {
-        competitionSwimmers.add(member);
-    }
-
-    public void createCompSwimmer(Member member, Coach coach, TrainingResults trainingResults) {
+    public void createCompSwimmer(Member member) {
         chooseCompSwimmer(member);
         findSwimmerDiscipline();
-        coach.chooseCoach(coach);
 
 
-        //CompetitionSwimmer competitionSwimmer = new CompetitionSwimmer(member, getSwimmingDiscipline() )
+        //CompetitionSwimmer competitionSwimmer = new CompetitionSwimmer(member, );
+
+        //System.out.println(competitionSwimmer);
 
     }
-
-
 
     public void findSwimmerDiscipline() {
         boolean run = true;
@@ -122,4 +118,10 @@ public class CompetitionSwimmer extends Member{
     }
 
 
+    @Override
+    public String toString() {
+        return "CompetitionSwimmer: " +
+                "Member" + member +
+                ", swimmingDiscipline=" + swimmingDiscipline;
+    }
 }
