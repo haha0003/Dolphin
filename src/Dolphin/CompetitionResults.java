@@ -25,7 +25,6 @@ public class CompetitionResults extends Member {
         this.competitionSwimmer = competitionSwimmer;
         this.coach = coach;
         this.competitionResultsList = new ArrayList<>();
-        competitionSwimmer.addCompetitionResults(this);
     }
 
     public CompetitionResults(){

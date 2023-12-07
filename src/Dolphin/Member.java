@@ -105,7 +105,7 @@ public class Member {
             System.out.println("Age: " + getAge());
     }
 
-    public void createMember(Subscription sub){
+    public void createMember(Subscription sub, CompetitionSwimmer compSwimmer){
         findName();
         findBirthday();
         Membership membership = new Membership();
@@ -116,6 +116,7 @@ public class Member {
         members.add(m);
         System.out.println(m);
         sub.addToDebtList(m);
+        compSwimmer.findAddCompSwimmer(m);
         saveFile();
     }
 
@@ -156,7 +157,7 @@ public class Member {
     }
 
 
-    public void readFile(Subscription sub) {
+    public void readFile(Subscription sub, CompetitionSwimmer compSwimmer) {
         try {
             File file = new File(filename);
             if (!file.exists()) {
@@ -172,13 +173,16 @@ public class Member {
                     int age = Integer.parseInt(tokens[2]);
                     MemberStatus memberStatus = MemberStatus.valueOf(tokens[3]);
                     MemberType memberType = MemberType.valueOf(tokens[4]);
-                    SwimmerType swimmerType = SwimmerType.valueOf(tokens[5]);
+                    SwimmerDiscipline swimmerType = SwimmerDiscipline.valueOf(tokens[5]);
                     boolean inDebt = Boolean.parseBoolean(tokens[6]);
                     Member newMember = new Member(name, birthday, age,
                             new Membership(memberStatus, memberType, swimmerType),inDebt);
                     members.add(newMember);
                     if (inDebt) {
                         sub.addToDebtListNoInfo(newMember);
+                    }
+                    if (swimmerType == SwimmerDiscipline.COMPETITOR) {
+                        compSwimmer.addToCompList(newMember);
                     }
                 }
             }

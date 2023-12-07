@@ -17,12 +17,11 @@ public class TrainingResults extends Member implements Comparable<TrainingResult
         this.timeSeconds = timeSeconds;
         this.date = date;
     }
-
-
-
-
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public TrainingResults() {
     }
 
     public void setTimeSeconds(double timeSeconds) {
@@ -38,7 +37,7 @@ public class TrainingResults extends Member implements Comparable<TrainingResult
     }
 
 
-    public void setTrainingResults() {
+    public void createTrainingResults() {
 
         Scanner scanner = new Scanner(System.in);
 

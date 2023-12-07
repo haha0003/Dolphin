@@ -1,6 +1,6 @@
 package Dolphin;
 
-public enum SwimmerType {
+public enum SwimmerDiscipline {
     EXERCISER,
     COMPETITOR;
 }

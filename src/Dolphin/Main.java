@@ -21,19 +21,22 @@ public class Main {
         Member member = new Member();
         Subscription sub = new Subscription();
         CompetitionResults competitionResults = new CompetitionResults();
-        member.readFile(sub);
+        CompetitionSwimmer competitionSwimmer = new CompetitionSwimmer();
+        Coach coach = new Coach();
+        TrainingResults trainingResults = new TrainingResults();
+        member.readFile(sub, competitionSwimmer);
         boolean running = true;
         while (running) {
             menu.viewMenu();
             int userInt = menu.readChoice();
             switch (userInt){
-                case 1 -> member.createMember(sub);
+                case 1 -> member.createMember(sub, competitionSwimmer);
                 case 2 -> member.viewMembers();
                 case 3 -> sub.displayDebtList();
                 case 4 -> member.changeInDebt(member, sub);
                 case 5 -> competitionResults.getCompetitionResultsFromUserInput();
-                case 6 -> System.out.println();
-                case 7 -> System.out.println();
+                case 6 -> competitionSwimmer.chooseCompSwimmer(member);
+                //case 7 -> competitionSwimmer.createCompSwimmer(member, coach, trainingResults);
                 case 9 -> running = false;
                 default -> System.out.println("INVALID!!!");
             }

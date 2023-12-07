@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Membership {
     private MemberStatus memberStatus;
     private MemberType memberType;
-    private SwimmerType swimmerType;
+    private SwimmerDiscipline swimmerType;
 
     Member member = new Member();
     Scanner scanner = new Scanner(System.in);
 
-    Membership(MemberStatus memberStatus, MemberType memberType, SwimmerType swimmerType){
+    Membership(MemberStatus memberStatus, MemberType memberType, SwimmerDiscipline swimmerType){
         this.memberStatus = memberStatus;
         this.memberType = memberType;
         this.swimmerType = swimmerType;
@@ -33,10 +33,10 @@ public class Membership {
         this.memberType = memberType;
     }
 
-    public SwimmerType getSwimmerType() {
+    public SwimmerDiscipline getSwimmerType() {
         return swimmerType;
     }
-    public void setSwimmerType(SwimmerType swimmerType) {
+    public void setSwimmerType(SwimmerDiscipline swimmerType) {
         this.swimmerType = swimmerType;
     }
 
@@ -68,18 +68,18 @@ public class Membership {
         boolean run = true;
         while (run){
             System.out.println("Enter number of swimmer type:");
-            SwimmerType[] s = SwimmerType.values();
+            SwimmerDiscipline[] s = SwimmerDiscipline.values();
             for (int i = 0; i < s.length; i++){
                 System.out.println(i + ". " + s[i]);
             }
             int ans = scanner.nextInt();
             scanner.nextLine();
             if (ans < s.length && ans == 0){
-                setSwimmerType(SwimmerType.EXERCISER);
+                setSwimmerType(SwimmerDiscipline.EXERCISER);
                 System.out.println("Swimmer type: " + getSwimmerType());
                 run = false;
             } else if (ans < s.length && ans == 1){
-                setSwimmerType(SwimmerType.COMPETITOR);
+                setSwimmerType(SwimmerDiscipline.COMPETITOR);
                 System.out.println("Swimmer type:" + getSwimmerType());
                 run = false;
             } else {
