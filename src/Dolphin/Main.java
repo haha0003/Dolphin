@@ -43,7 +43,7 @@ public class Main {
                 case 4 -> member.changeInDebt(member, sub);
                 case 5 -> competitionResults.getCompetitionResultsFromUserInput();
                 case 6 -> competitionSwimmer.chooseCompSwimmer(member);
-                case 7 -> competitionSwimmer.createCompSwimmer(member);
+                case 7 -> competitionSwimmer.createCompSwimmer(member, coach);
                 case 9 -> running = false;
                 default -> System.out.println("INVALID!!!");
             }

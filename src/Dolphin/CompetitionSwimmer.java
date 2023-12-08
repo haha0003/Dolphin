@@ -31,8 +31,14 @@ public class CompetitionSwimmer extends Member{
     public Member getMember() {
         return member;
     }
+    public void setMember(Member member) {
+        this.member = member;
+    }
     public Coach getCoach() {
         return coach;
+    }
+    public void setCoach(Coach coach) {
+        this.coach = coach;
     }
     public SwimmingDiscipline getSwimmingDiscipline() {
         return swimmingDiscipline;
@@ -56,32 +62,76 @@ public class CompetitionSwimmer extends Member{
     }
 
     public void viewCompSwimmers() {
+        System.out.println("SWIMMERS: ");
         for (int i = 0; i<competitionSwimmers.size(); i++){
             System.out.println(i + ". " + competitionSwimmers.get(i).getName());
         }
     }
 
+  /*  public CompetitionSwimmer chooseSwimmer(){
+        boolean run = true;
+        Member member = null;
+
+        while (run){
+            viewCompSwimmers();
+            System.out.println("Enter the number of the 'desired' Swimmer:");
+            int ans = scanner.nextInt();
+            scanner.nextLine();
+
+            if (ans > 0 && ans < competitionSwimmers.size()) {
+                member = competitionSwimmers.get(ans);
+                System.out.println("Swimmer: " + member.getName());
+
+            }
+
+        }
+    }
+
+   */
+
     public void chooseCompSwimmer(Member member) {
         viewCompSwimmers();
-        System.out.println("Choose Number");
+        System.out.println("Choose Number of 'desired' swimmer: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         member = competitionSwimmers.get(choice);
-        System.out.println("You picked: " + member);
+        setMember(member);
+        System.out.println("You picked: " + member.getName());
     }
 
-    public void createCompSwimmer(Member member) {
+    public void createCompSwimmer(Member member, Coach coach) {
         chooseCompSwimmer(member);
         findSwimmerDiscipline();
+        Coach selectedCoach = coach.chooseCoach();
+        setCoach(selectedCoach);
 
-
-        //CompetitionSwimmer competitionSwimmer = new CompetitionSwimmer(member, );
-
-        //System.out.println(competitionSwimmer);
+        CompetitionSwimmer competitionSwimmer = new CompetitionSwimmer(member, selectedCoach, getSwimmingDiscipline());
+        System.out.println(competitionSwimmer);
 
     }
 
     public void findSwimmerDiscipline() {
+        boolean run = true;
+        while (run) {
+            System.out.println("Enter number of swimmer discipline:");
+            SwimmingDiscipline[] s = SwimmingDiscipline.values();
+            for (int i = 0; i < s.length; i++) {
+                System.out.println(i + ". " + s[i]);
+            }
+            int ans = scanner.nextInt();
+            scanner.nextLine();
+            if (ans >= 0 && ans < s.length) {
+                setSwimmingDiscipline(s[ans]);
+                System.out.println("Swimming discipline: " + getSwimmingDiscipline());
+                run = false;
+            } else {
+                System.out.println("INVALID!!!");
+            }
+        }
+    }
+
+
+ /*   public void findSwimmerDiscipline() {
         boolean run = true;
         while (run){
             System.out.println("Enter number of swimmer discipline:");
@@ -97,31 +147,32 @@ public class CompetitionSwimmer extends Member{
                 run = false;
             } else if (ans < s.length && ans == 1) {
                 setSwimmingDiscipline(SwimmingDiscipline.MEDLEY);
-                System.out.println("Swimmer discipline:" + getSwimmingDiscipline());
+                System.out.println("Swimmer discipline: " + getSwimmingDiscipline());
                 run = false;
             }else if(ans < s.length && ans == 2){
                 setSwimmingDiscipline(SwimmingDiscipline.BACKSTROKE);
-                System.out.println("Swimmer discipline:" + getSwimmingDiscipline());
+                System.out.println("Swimmer discipline: " + getSwimmingDiscipline());
                 run = false;
             }else if(ans < s.length && ans == 3){
                 setSwimmingDiscipline(SwimmingDiscipline.BREASTSTROKE);
-                System.out.println("Swimmer discipline:" + getSwimmingDiscipline());
+                System.out.println("Swimmer discipline: " + getSwimmingDiscipline());
                 run = false;
             }else if(ans < s.length && ans == 4){
                 setSwimmingDiscipline(SwimmingDiscipline.FREESTYLE);
-                System.out.println("Swimmer discipline:" + getSwimmingDiscipline());
+                System.out.println("Swimmer discipline: " + getSwimmingDiscipline());
                 run = false;
             } else {
                 System.out.println("INVALID!!!");
             }
         }
     }
+  */
 
 
     @Override
     public String toString() {
         return "CompetitionSwimmer: " +
-                "Member" + member +
-                ", swimmingDiscipline=" + swimmingDiscipline;
+                "Member" + member.getName() +
+                ", swimmingDiscipline: " + swimmingDiscipline + ", Coach: " + coach;
     }
 }

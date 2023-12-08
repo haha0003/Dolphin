@@ -42,7 +42,7 @@ public class Coach {
 
             if (ans > 0 && ans < coaches.size()) {
                 selectedCoach = coaches.get(ans);
-                System.out.println(selectedCoach);
+                System.out.println("Coach: " + selectedCoach);
                 run = false;
             } else {
                 System.out.println("INVALID!");
