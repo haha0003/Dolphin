@@ -104,7 +104,6 @@ public class CompetitionSwimmer extends Member{
         findSwimmerDiscipline();
         Coach selectedCoach = coach.chooseCoach();
         setCoach(selectedCoach);
-
         CompetitionSwimmer competitionSwimmer = new CompetitionSwimmer(member, selectedCoach, getSwimmingDiscipline());
         System.out.println(competitionSwimmer);
 
