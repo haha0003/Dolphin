@@ -89,7 +89,7 @@ public class CompetitionSwimmer extends Member{
 
    */
 
-    public void chooseCompSwimmer(Member member) {
+ /*   public void chooseCompSwimmer(Member member) {
         viewCompSwimmers();
         System.out.println("Choose Number of 'desired' swimmer: ");
         int choice = scanner.nextInt();
@@ -99,8 +99,17 @@ public class CompetitionSwimmer extends Member{
         System.out.println("You picked: " + member.getName());
     }
 
+  */
+
     public void createCompSwimmer(Member member, Coach coach) {
-        chooseCompSwimmer(member);
+        viewCompSwimmers();
+        System.out.println("Choose Number of 'desired' swimmer: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        member = competitionSwimmers.get(choice);
+        setMember(member);
+        System.out.println("You picked: " + member.getName());
+
         findSwimmerDiscipline();
         Coach selectedCoach = coach.chooseCoach();
         setCoach(selectedCoach);
@@ -170,8 +179,8 @@ public class CompetitionSwimmer extends Member{
 
     @Override
     public String toString() {
-        return "CompetitionSwimmer: " +
-                "Member" + member.getName() +
+        return "\nCompetitionSwimmer: \n" +
+                "Member: " + member.getName() +
                 ", swimmingDiscipline: " + swimmingDiscipline + ", Coach: " + coach;
     }
 }
